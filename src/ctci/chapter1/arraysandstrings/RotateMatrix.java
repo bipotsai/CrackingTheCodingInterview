@@ -2,11 +2,13 @@ package ctci.chapter1.arraysandstrings;
 
 public class RotateMatrix {
 
+
     /**
      * self implemented
+     * wrong -> only shift one element
      * @param input
      */
-    public void rotate90(int[][] input){
+    public void shift(int[][] input){
         int N = input.length;
         int i=0;
         int j=0;
@@ -48,6 +50,31 @@ public class RotateMatrix {
     }
 
     /**
+     * self implemented(correct solution)
+     * @param input
+     */
+    public static void rotate90(int[][] input){
+        int N = input.length;
+        while(N>1){
+            int first = (input.length-N)/2;
+            int last = first + N - 1;
+            for(int i=0;i<=last-first-1;i++){
+                int temp = input[first][first+i];
+                //left -> top
+                input[first][first+i] = input[last-i][first];
+                //bottom -> left
+                input[last-i][first] = input[last][last-i];
+                //right -> bottom
+                input[last][last-i] = input[first+i][last];
+                //top -> right
+                input[first+i][last] = temp;
+            }
+            N -= 2;
+        }
+    }
+
+
+    /**
      * solution from book
      * @param matrix
      */
@@ -78,7 +105,7 @@ public class RotateMatrix {
         return true;
     }
 
-    public void print(int[][] input){
+    public static void print(int[][] input){
         for(int[] row : input){
             for(int n : row){
                 System.out.printf("%d ", n);
@@ -88,19 +115,24 @@ public class RotateMatrix {
     }
 
     public static void main(String[] args) {
-        int[][] input = new int[][]{{1,2,3,4,5},{16,17,18,19,6},{15,24,25,20,7},{14,23,24,21,8},{13,12,11,10,9}};
+        int[][] input = new int[][]{{1,2,3,4,5},{16,17,18,19,6},{15,24,25,20,7},{14,23,22,21,8},{13,12,11,10,9}};
 
-        RotateMatrix rm = new RotateMatrix();
+//        RotateMatrix rm = new RotateMatrix();
         System.out.println("");
-        rm.print(input);
-        rm.rotate90(input);
+        RotateMatrix.print(input);
+//        rm.shift(input);
+//        System.out.println("");
+//        rm.print(input);
+
+        input = new int[][]{{1,2,3,4,5},{16,17,18,19,6},{15,24,25,20,7},{14,23,24,21,8},{13,12,11,10,9}};
+        RotateMatrix.rotate90(input);
         System.out.println("");
-        rm.print(input);
+        RotateMatrix.print(input);
 
         input = new int[][]{{1,2,3,4,5},{16,17,18,19,6},{15,24,25,20,7},{14,23,24,21,8},{13,12,11,10,9}};
         RotateMatrix.rotate(input);
         System.out.println("");
-        rm.print(input);
+        RotateMatrix.print(input);
     }
 
 
