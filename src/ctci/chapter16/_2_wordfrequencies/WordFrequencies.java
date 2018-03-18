@@ -1,4 +1,4 @@
-package ctci.chapter16.wordfrequencies;
+package ctci.chapter16._2_wordfrequencies;
 
 import java.util.Arrays;
 import java.util.HashMap;

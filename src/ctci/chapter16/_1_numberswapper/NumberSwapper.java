@@ -1,4 +1,4 @@
-package ctci.chapter16.numberswapper;
+package ctci.chapter16._1_numberswapper;
 
 public class NumberSwapper {
 
